@@ -99,7 +99,7 @@ class Experiment:
         return grm.model_from_sparse_matrix(grm.random_normal_matrix(self.dim, dens))
 
     def generate_close_matricies(self, N, center_point, radius, dens):
-        return [center_point + radius * grm.generate_matrix(dens) for _ in range(N)]
+        return [center_point + radius * grm.random_normal_matrix(self.dim, dens).A for _ in range(N)]
 
     def generate_and_solve(self, dens):
         model = self.generate_model(dens)
