@@ -147,9 +147,9 @@ class Experiment:
         res = []
         for model, brute_solution in tqdm.tqdm(models_and_brute_solutions):
             solution = self.solve(model)
-            final_theta, _ = solution.x, solution.fun
-            coutns, (item, _) = self.retrieve_state_distribution(model, final_theta)
-            res.append(probability_retrieval(coutns, brute_solution, item))
+            final_theta = solution.x
+            counts, (item, _) = self.retrieve_state_distribution(model, final_theta)
+            res.append(probability_retrieval(counts, brute_solution, item))
         return [prob for prob in res if prob is not None]
 
     def compute_probability_avg(
@@ -187,7 +187,6 @@ def retrieve_probabilities1(counts, brute_results, *args):
     minval = min(brute_results.values())
     res = [k for k, v in brute_results.items() if v == minval]
     if len(res) == 1:
-        # построить гистограмму, прислать в чатик
         return counts.get(res[0], 0) / sum(counts.values())
     else:
         return None
