@@ -52,3 +52,12 @@ def analazing_the_result(counts):
     plot_histogram(counts)
     plt.bar(counts.keys(), counts.values())
     print(counts)
+
+
+def hist_with_avg(x):
+    plt.hist(x, bins=30)
+    xx = np.array(x).mean()
+    plt.axvline(xx, color='k', linestyle='dashed', linewidth=2)
+    min_ylim, max_ylim = plt.ylim()
+    plt.text(xx*1.1, max_ylim*0.9, 'Среднее: {:.3f}'.format(xx))
+    plt.show()
