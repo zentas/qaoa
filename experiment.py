@@ -100,7 +100,7 @@ class Experiment:
 
     def generate_close_matricies(self, N, center_point, radius, dens):
         return [
-            center_point + radius * grm.random_normal_matrix(self.dim, dens).A
+            center_point + radius * grm.random_normal_matrix(self.dim, dens)
             for _ in range(N)
         ]
 
