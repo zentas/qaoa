@@ -37,11 +37,11 @@ class Experiment:
 
     def brute_force(self, model):
         def number2array(x):
-            return [x // 2 ** (i - 1) % 2 for i in range(self.dim, 0, -1)]
+            return [x for x in list(format(x, 'b').rjust(self.dim, '0'))]
 
         costs = [
             (
-                "".join([str(n) for n in number2array(x)]),
+                "".join(number2array(x)),
                 objective_function(number2array(x), model),
             )
             for x in range(2**self.dim)
