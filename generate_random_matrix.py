@@ -41,4 +41,4 @@ def model_from_matrix(matrix):
         for j in range(i, dim):
             constr += x[i] * x[j] * matrix[i, j]
     model = Constraint(constr, "").compile()
-    return model, dim
+    return model

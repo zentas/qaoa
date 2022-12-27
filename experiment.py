@@ -96,7 +96,7 @@ class Experiment:
         return execute_circ
 
     def generate_model(self, dens):
-        return grm.model_from_sparse_matrix(grm.random_normal_matrix(self.dim, dens))
+        return grm.model_from_matrix(grm.random_normal_matrix(self.dim, dens).A)
 
     def generate_close_matricies(self, N, center_point, radius, dens):
         return [
