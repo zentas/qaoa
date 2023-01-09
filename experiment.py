@@ -37,7 +37,7 @@ class Experiment:
 
     def brute_force(self, model):
         def number2array(x):
-            return [x for x in list(format(x, 'b').rjust(self.dim, '0'))]
+            return [x for x in list(format(x, "b").rjust(self.dim, "0"))]
 
         costs = [
             (
@@ -181,6 +181,13 @@ class Experiment:
                 break
 
         return n
+
+    # approximation ratio from article "Benchmarking the quantum approximate optimization algorithm"
+    def approximation_ratio(self,model, item, brute_results):
+        func = objective_function(item, model)
+        minval = min(brute_results.values())
+        maxval = max(brute_results.values())
+        return (maxval - func) / (maxval - minval)
 
 
 # --- end of class Experiment
