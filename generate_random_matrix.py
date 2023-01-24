@@ -20,6 +20,13 @@ def random_normal_matrix(dim, dens):
 def random_even_matrix(dim, dens):
     return random(dim, dim, dens)
 
+# maxcut - это кубо без диагональных элементов
+# ring of disagrees
+# def random_maxcut(dim, dens):
+    # m = random_normal_matrix(dim, dens).A
+    # for i in range(dim):
+    #     m[i][i] = 0
+    # return m
 
 def model_from_sparse_matrix(sparse):
     dim = sparse.get_shape()[0]
