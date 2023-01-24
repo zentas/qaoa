@@ -189,6 +189,15 @@ class Experiment:
         maxval = max(brute_results.values())
         return (maxval - func) / (maxval - minval)
 
+    def get_success_probability(self, model):
+        def func(theta):
+            counts, (item, _) = self.retrieve_state_distribution(model, theta)
+            brute_results = self.brute_force(model)
+            minval = min(brute_results.values())
+            res = [k for k, v in brute_results.items() if v == minval][0]
+            return counts.get(res, 0) / sum(counts.values())
+        return func
+
 
 # --- end of class Experiment
 
