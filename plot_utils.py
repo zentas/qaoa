@@ -4,18 +4,18 @@ import matplotlib.pyplot as plt
 from qiskit.visualization import plot_histogram
 
 def compute_energy_landscape(expectation_function, grid):
-        N, M = grid
+    N, M = grid
 
-        beta = [2 * np.pi * i / N - np.pi for i in range(0, N)]
-        gamma = [2 * np.pi * i / M - np.pi for i in range(0, M)]
+    beta = [2 * np.pi * i / N - np.pi for i in range(0, N)]
+    gamma = [2 * np.pi * i / M - np.pi for i in range(0, M)]
 
-        beta, gamma = np.meshgrid(beta, gamma)
-        F = np.array([
-            [expectation_function([b_entry] + [g_entry]) for (b_entry, g_entry) in zip(b, g)]
-            for (b, g) in zip(beta, gamma)
-        ])
+    beta, gamma = np.meshgrid(beta, gamma)
+    F = np.array([
+        [expectation_function([b_entry] + [g_entry]) for (b_entry, g_entry) in zip(b, g)]
+        for (b, g) in zip(beta, gamma)
+    ])
 
-        return beta, gamma, F
+    return beta, gamma, F
 
 
 def plot_energy_landscape(landscape, pathing=None):
