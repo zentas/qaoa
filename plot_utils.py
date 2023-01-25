@@ -1,7 +1,6 @@
 import numpy as np
 
 import matplotlib.pyplot as plt
-from qiskit.visualization import plot_histogram
 
 def compute_energy_landscape(expectation_function, grid):
     N, M = grid
@@ -49,7 +48,6 @@ def plot_energy_route(route_function, final_function):
 
 
 def analazing_the_result(counts):
-    plot_histogram(counts)
     plt.bar(counts.keys(), counts.values())
     print(counts)
 
