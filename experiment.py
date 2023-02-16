@@ -27,13 +27,13 @@ def objective_function(x, model):
 
 
 class Experiment:
-    def __init__(self, p, dim, method, create_backend, fixed_seed=None):
+    def __init__(self, p, dim, method, create_backend, shots=512, fixed_seed=None):
         self.p = p
         self.dim = dim
         self.create_backend = create_backend
         self.fixed_seed = fixed_seed
         self.method = method
-        self.shots = 512
+        self.shots = shots
 
     def brute_force(self, model):
         def number2array(x):
@@ -86,7 +86,7 @@ class Experiment:
         def execute_circ(theta):
             qc = self.mesure_circ(self.create_qaoa_circ(model, theta))
             counts = (
-                backend.run(qc, seed_simulator=self.fixed_seed, nshots=self.shots)
+                backend.run(qc, seed_simulator=self.fixed_seed, shots=self.shots)
                 .result()
                 .get_counts()
             )
@@ -112,7 +112,7 @@ class Experiment:
         method, options = self.method
 
         f = self.get_expectation_function(model)
-        init = np.ones(shape=(2 * self.p,))
+        init = np.ones(shape=(2 * self.p,)) # можно на что-то заменить
         return minimize(f, init, method=method, options=options, callback=callback)
 
     def validate(self, item, brute_solution):
