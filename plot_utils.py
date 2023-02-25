@@ -34,8 +34,8 @@ def plot_energy_landscape(landscape, pathing=None):
          for ((x, y), f) in zip(route_theta, route_function)]
 
     fig.set_size_inches(6, 5, forward=True)
-    plt.xlabel('gamma')
-    plt.ylabel('beta')
+    plt.xlabel('beta')
+    plt.ylabel('gamma')
     plt.show()
 
 
