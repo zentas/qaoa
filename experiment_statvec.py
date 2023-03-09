@@ -20,7 +20,7 @@ class ExperimentStatvec(experiment.Experiment):
         create_backend=lambda: Aer.get_backend("statevector_simulator"),
         fixed_seed=None,
     ):
-        super().__init__(p, dim, method, create_backend, fixed_seed)
+        super().__init__(p, dim, method, create_backend, fixed_seed=fixed_seed)
 
     def get_expectation_function(self, model):
         backend = self.create_backend()
