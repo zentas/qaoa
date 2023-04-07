@@ -112,7 +112,7 @@ class Experiment:
         method, options = self.method
 
         f = self.get_expectation_function(model)
-        init = np.ones(shape=(2 * self.p,)) # можно на что-то заменить
+        init = np.random.rand(shape=(2 * self.p,))
         return minimize(f, init, method=method, options=options, callback=callback)
 
     def validate(self, item, brute_solution):
